@@ -1,1 +1,6 @@
-/target
+# Leavout compiled and executables
+debug/
+target/
+
+# No backup files from rustfmt
+**/*.rs.bk
