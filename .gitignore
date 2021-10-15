@@ -4,3 +4,6 @@ target/
 
 # No backup files from rustfmt
 **/*.rs.bk
+
+# The main target
+main
