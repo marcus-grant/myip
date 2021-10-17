@@ -1,9 +1,20 @@
+bin/
+pkg/
+node_modules/
+.cargo-ok
+
 # Leavout compiled and executables
 debug/
 target/
 
-# No backup files from rustfmt
-**/*.rs.bk
-
 # The main target
 main
+
+# Defaults from wrangler
+/dist
+/target
+worker/
+**/*.rs.bk
+Cargo.lock
+wasm-pack.log
+build
