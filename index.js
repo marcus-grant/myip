@@ -5,16 +5,19 @@ addEventListener('fetch', event => {
 function respondWithIP(ip) {
   return new Response(
     ip,
-    { headers: {
-      'status': 200,
-      'content-type': 'text/plain',
-    }},
+    { 'status': 200,
+      'statusText': 'OK',
+      headers: {
+        "content-type": "text/plain;charset=UTF-8",
+      },
+    }
   );
 }
 
 function respondWithFail(headers) {
   const errorMsg = 'ERROR: No corresponding header to identify public IP.'
   
+  // TODO headers should be on same depth as status and text
   return new Response(
     JSON.stringify(Object.fromEntries(headers)),
     { headers: {
@@ -36,11 +39,8 @@ async function handleRequest(request) {
     'x-real-ip',
     'cf-connecting-ip'
   ];
-  let preferredIPHeader;
   for (let h of headerPriority) {
     if (headers.has(h)) {
-      // console.log(`currentHeader=${h}, headers.has(h)=${headers.has(h)}`)
-      // console.log(`currentHeaderIP=${headers.get(h)}`);
       return respondWithIP(headers.get(h));
     }
   }
